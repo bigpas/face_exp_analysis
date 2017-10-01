@@ -1,5 +1,6 @@
 source('R/libs.R')
 source('R/confidence_score.R')
+source('R/sensitivity_score.R')
 
 # Input files and Data preparation -----------------------------------------------------
 AFDES_raw_files <-
@@ -23,13 +24,20 @@ targets_for_AFDES <- sapply(target_labels, function(x)
 
 # examples confidence scores -----------------------------------------------
 #single data frame
-confidence_score(df = AFDES_data[[1]],
+confidence_score(df = AFDES_data[["North_Europ_F01sadnessface_Forward_7"]],
                  target_labels_for_dataset = targets_for_AFDES)
 
 #list of data frames
-lapply(AFDES_data, function(x)
-    confidence_score(df = x,
+lapply(AFDES_data, function(dataset)
+    confidence_score(df = dataset,
                      target_labels_for_dataset = targets_for_AFDES)) %>%
     plyr::ldply(.id = "file_Id")
 
 # examples sensitivity scores ---------------------------------------------
+sensitivity_scores(df = AFDES_data[["North_Europ_F01sadnessface_Forward_7"]],
+                   target_labels_for_dataset = targets_for_AFDES)
+
+lapply(AFDES_data, function(dataset)
+    sensitivity_scores(df = dataset,
+                       target_labels_for_dataset = targets_for_AFDES)) %>%
+    plyr::ldply(.id = "file_Id")

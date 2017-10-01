@@ -23,5 +23,3 @@ sensitivity_scores <- function(df, target_labels_for_dataset){
 
     round(res, 2)
 }
-
-sensitivity_scores(AFDES_data[[1]], targets_for_AFDES)

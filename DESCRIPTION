@@ -4,8 +4,10 @@ Title: Calculate Confidence Scores and Sensitivity Scores for FACET data
 Version: 0.1.0
 Author: Pasquale Dente
 Maintainer: Pasquale Dente <pasqui.dente@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: This is a package that contains two functions that calculate 
+the Confidence Score and the Sensitity Score for FACET data as described in 
+the referenced poster paper "Measures and metrics for 
+automatic emotion classification via FACET".
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

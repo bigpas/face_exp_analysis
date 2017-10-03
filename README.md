@@ -8,6 +8,4 @@ NB: The repo will automatically install missing deps.
 Please, find the Style Guide [here](http://style.tidyverse.org/)
 
 ## Citations:
-Dente, P., Kuester, D., Skora, L., & Krumhuber, E. G. (2017) _"Measures and metrics for automatic emotion 
-classification via FACET"._ Paper presented at the AISB Annual Convention, 2017
-
+Dente, P., Küster, D., Skora, L., & Krumhuber, E. G. (2017). Measures and metrics for automatic emotion classification via FACET. In J. Bryson, M. De Vos, & J. Padget (Eds.), Proceedings of the Conference on the Study of Artificial Intelligence and Simulation of Behaviour (AISB) (pp. 164-167), Bath, UK (April).

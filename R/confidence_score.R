@@ -46,7 +46,13 @@ confidence_score_odds <- function(df, target_labels_for_dataset, score_type = "o
     scores <- lapply(df_subset, function(x){
 
         prob_scores <- to_probabilities(x)
-        odds_scores <- sum(to_odds(prob_scores))
+        odds_scores <- to_odds(prob_scores)
+
+        if(score_type == "odds") {
+            return(sum(odds_scores))
+        } else if(score_type == "probs") {
+            return(sum(prob_scores))
+        }
     })
 
     sum_of_scores <- Reduce(`+`, scores)

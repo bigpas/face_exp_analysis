@@ -1,7 +1,6 @@
 source('R/libs.R')
 source('R/confidence_score.R')
 source('R/sensitivity_score.R')
-source('R/score_transformations.R')
 
 # Emotional labels of interest --------------------------------------------
 target_labels <-
@@ -57,6 +56,7 @@ confidence_score_odds(df = ADFES_data[["North_Europ_F01sadnessface_Forward_7"]],
                  target_labels_for_dataset = targets_for_ADFES,
                  score_type = 'odds')
 
+
 ##list of data frames
 ##lapply(ADFES_data, function(dataset)
 lapply(ADFES_data, function(dataset)
@@ -65,3 +65,9 @@ lapply(ADFES_data, function(dataset)
                      score_type = 'odds')
     ) %>%
     plyr::ldply(.id = "file_Id")
+
+#a variation: confidence calculated on probabilty scores
+#confidence_score_odds(df = ADFES_data[["North_Europ_F01sadnessface_Forward_7"]],
+confidence_score_odds(df = ADFES_data[["North_Europ_F01sadnessface_Forward_7"]],
+                      target_labels_for_dataset = targets_for_ADFES,
+                      score_type = 'probs')

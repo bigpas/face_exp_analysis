@@ -15,12 +15,16 @@ ADFES_raw_files <-
 ADFES_raw_files
 
 # problem with readr_tsv(); fread works great instead!
-ADFES_data <- lapply(ADFES_raw_files, function(x)
-    data.table::fread(x, data.table = FALSE))
-
-names(ADFES_data) <- gsub("raw-data//|\\.txt$", "", ADFES_raw_files) %>%
-                        gsub('Dump\\d+_', '', .) %>%
-                            gsub('\\s+|-', "_", .)
+ADFES_data <- lapply(ADFES_raw_files, function(x){
+    y <- data.table::fread(x, data.table = FALSE)
+    gPattern <- paste0(targets_for_ADFES, collapse = '|')
+    y[ , grepl(pattern = gPattern, x = names(y))][is.na(y[ , grepl(pattern = gPattern, x = names(y))])] <- -99
+    y
+    }) %>%
+    set_names(nm = gsub("raw-data//|\\.txt$", "", ADFES_raw_files) %>%
+                    gsub('Dump\\d+_', '', .) %>%
+                        gsub('\\s+|-', "_", .)
+              )
 
 
 # examples confidence scores -----------------------------------------------

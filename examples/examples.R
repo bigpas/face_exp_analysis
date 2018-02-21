@@ -67,7 +67,6 @@ lapply(ADFES_data, function(dataset)
     plyr::ldply(.id = "file_Id")
 
 #a variation: confidence calculated on probabilty scores
-#confidence_score_odds(df = ADFES_data[["North_Europ_F01sadnessface_Forward_7"]],
 confidence_score_odds(df = ADFES_data[["North_Europ_F01sadnessface_Forward_7"]],
                       target_labels_for_dataset = targets_for_ADFES,
                       score_type = 'probs')

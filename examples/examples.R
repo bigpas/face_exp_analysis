@@ -1,6 +1,7 @@
 source('R/libs.R')
 source('R/confidence_score.R')
 source('R/sensitivity_score.R')
+source('R/score_transformations.R')
 
 # Emotional labels of interest --------------------------------------------
 target_labels <-
@@ -41,4 +42,22 @@ sensitivity_scores(df = ADFES_data[["North_Europ_F01sadnessface_Forward_7"]],
 lapply(ADFES_data, function(dataset)
     sensitivity_scores(df = dataset,
                        target_labels_for_dataset = targets_for_ADFES)) %>%
+    plyr::ldply(.id = "file_Id")
+
+
+
+# adding features ---------------------------------------------------------
+## Confidence Scores with Odds
+# single file
+confidence_score_odds(df = ADFES_data[["North_Europ_F01sadnessface_Forward_7"]],
+                 target_labels_for_dataset = targets_for_ADFES,
+                 score_type = 'odds')
+
+##list of data frames
+##lapply(ADFES_data, function(dataset)
+lapply(ADFES_data, function(dataset)
+    confidence_score_odds(df = dataset,
+                     target_labels_for_dataset = targets_for_ADFES,
+                     score_type = 'odds')
+    ) %>%
     plyr::ldply(.id = "file_Id")
